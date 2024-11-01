@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <body></body>
+    <body>
+        <div id="root"></div>
+    </body>
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> <!-- import react -->
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script> <!-- import react-dom-->
+    <script>
+        const root = document.getElementById("root");
+        const spanTag = React.createElement("span", null, "Hello"); // spanTag: 아무 이름이나 가능, "span": html 태그 이름 / property / value
+        ReactDOM.render(spanTag, root); // span을 화면에 root 통해 표시하기
+    </script>
 </html>
