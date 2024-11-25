@@ -9,14 +9,17 @@
     <script type="text/babel">
         const root = document.getElementById("root");
         function App() {
-            const [counter, modifier] = React.useState(0); // [변수명1, 변수명2] = 배열 -> 변수1=배열의 첫번째 요소, 변수2=배열의 두번째 요소
+            const [counter, setCounter] = React.useState(0); // function을 setCounter로 설정
+            const onClick = () => { // 호출 시
+                setCounter(counter + 1); // counter값을 1 증가시키는 setCounter를 실행 -> + 리엑트가 자동으로 리렌더링해줌
+            };
             return (
                 <div>
-                    <h3>Total clicks: {counter}</h3> {/* 위에서 변수로 각 인덱스를 이미 접근했기 때문에 변수명으로 값 접근 가능 */}
-                    <button>Click me</button>
+                    <h3>Total clicks: {counter}</h3>
+                    <button onClick={onClick}>Click me</button> {/* 버튼 클릭 시 onClick 함수 호출*/}
                 </div>
             );
         }
-        ReactDOM.render(<Container />, root);
+        ReactDOM.render(<App />, root); // 이전에도 App이었어야.. 했네욤^^7;
     </script>
 </html>
