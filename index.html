@@ -9,17 +9,17 @@
     <script type="text/babel">
         const root = document.getElementById("root");
         function App() {
-            const [counter, setCounter] = React.useState(0); // function을 setCounter로 설정
-            const onClick = () => { // 호출 시
-                setCounter(counter + 1); // counter값을 1 증가시키는 setCounter를 실행 -> + 리엑트가 자동으로 리렌더링해줌
+            const [counter, setCounter] = React.useState(0);
+            const onClick = () => {
+                setCounter((current) => current + 1); // 현재 state 기반 계산 -> 예상치 못한 다른 곳에서의 업데이트로 인한 계산 오류 방지
             };
             return (
                 <div>
                     <h3>Total clicks: {counter}</h3>
-                    <button onClick={onClick}>Click me</button> {/* 버튼 클릭 시 onClick 함수 호출*/}
+                    <button onClick={onClick}>Click me</button>
                 </div>
             );
         }
-        ReactDOM.render(<App />, root); // 이전에도 App이었어야.. 했네욤^^7;
+        ReactDOM.render(<App />, root);
     </script>
 </html>
