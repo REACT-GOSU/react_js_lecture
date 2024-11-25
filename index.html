@@ -8,23 +8,14 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-
-        let counter = 0;
-        function countUp() {
-            counter = counter + 1;
-            render(); // -> 1. UI 업데이트 2. *해당 부분만* 업데이트
+        function App() { // == const Component = () => (~~~)
+            return (
+                <div>
+                    <h3>Total clicks: 0</h3>
+                    <button>Click me</button>
+                </div>
+            );
         }
-        function render() { // 렌더링 함수
-            ReactDOM.render(<Container />, root);
-        }
-
-        const Container = () => (
-            <div>
-                <h3>Total clicks: {counter}</h3>
-                <button onClick={countUp}>Click me</button>
-            </div>
-        );
-
-        render(); // -> 로드될 때 화면 표시
+        ReactDOM.render(<Container />, root);
     </script>
 </html>
