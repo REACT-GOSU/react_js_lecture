@@ -9,12 +9,15 @@
     <script type="text/babel">
         const root = document.getElementById("root");
 
-        let counter = 0; // counter 변수
+        let counter = 0;
+        function countUp() { // counter 증가 함수
+            counter = counter + 1;
+        }
 
-        const Container = () => ( // react element
+        const Container = () => (
             <div>
-                <h3>Total clicks: {counter}</h3> {/* {변수명}으로 변수 적용*/}
-                <button>Click me</button>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={countUp}>Click me</button> {/* 이벤트 리스너 */}
             </div>
         );
         
