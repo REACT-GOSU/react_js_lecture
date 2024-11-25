@@ -8,10 +8,11 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        function App() { // == const Component = () => (~~~)
+        function App() {
+            const data = React.useState(0); // react 내에 데이터 보관, [value, function] 형태
             return (
                 <div>
-                    <h3>Total clicks: 0</h3>
+                    <h3>Total clicks: {data[0]}</h3> {/* 배열 형태이기 때문에 값을 사용하려면 기본적으로는 인덱스로 접근해야 함 */}
                     <button>Click me</button>
                 </div>
             );
