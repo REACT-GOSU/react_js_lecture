@@ -7,19 +7,18 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        const root = document.getElementById("root");
         function App() {
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-                setCounter((current) => current + 1); // 현재 state 기반 계산 -> 예상치 못한 다른 곳에서의 업데이트로 인한 계산 오류 방지
-            };
             return (
                 <div>
-                    <h3>Total clicks: {counter}</h3>
-                    <button onClick={onClick}>Click me</button>
+                    <h1 className="hi">Super Converter</h1> {/* 선점된 class는 사용 불가 -> jsx 문법 사용 */}
+                    <label htmlFor="minutes">Minutes</label> {/* 클릭 시 뒤의 input값 선택됨 */}
+                    <input id="minutes" placeholder="Minutes" type="number" />
+                    <label htmlFor="hours">Hours</label> {/* 선점된 for은 사용 불가 -> jsx 문법 사용 */}
+                    <input id="hours" placeholder="Hours" type="number" />
                 </div>
             );
         }
+        const root = document.getElementById("root");
         ReactDOM.render(<App />, root);
     </script>
 </html>
