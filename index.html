@@ -10,17 +10,21 @@
         const root = document.getElementById("root");
 
         let counter = 0;
-        function countUp() { // counter 증가 함수
+        function countUp() {
             counter = counter + 1;
+            render(); // -> 1. UI 업데이트 2. *해당 부분만* 업데이트
+        }
+        function render() { // 렌더링 함수
+            ReactDOM.render(<Container />, root);
         }
 
         const Container = () => (
             <div>
                 <h3>Total clicks: {counter}</h3>
-                <button onClick={countUp}>Click me</button> {/* 이벤트 리스너 */}
+                <button onClick={countUp}>Click me</button>
             </div>
         );
-        
-        ReactDOM.render(<Container />, root);
+
+        render(); // -> 로드될 때 화면 표시
     </script>
 </html>
