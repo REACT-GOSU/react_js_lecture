@@ -8,12 +8,23 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         function App() {
+            const [minutes, setMinutes] = React.useState();
+            const onChange = (event) => { // () 안에 event 안넣어도 JS의 이벤트 핸들러가 자동으로 이벤트 객체를 넘겨주지만 브라우저에 따라 다르게 동작할 수 있어서 명시해주는 것이 안전함
+                setMinutes(event.target.value); // js가 발생시킨 가짜 이벤트 안을 계속 따라가면 value 얻을 수 있음 -> state에 modifier로 넣어서 업데이트시켜주기
+            }
             return (
                 <div>
-                    <h1 className="hi">Super Converter</h1> {/* 선점된 class는 사용 불가 -> jsx 문법 사용 */}
-                    <label htmlFor="minutes">Minutes</label> {/* 클릭 시 뒤의 input값 선택됨 */}
-                    <input id="minutes" placeholder="Minutes" type="number" />
-                    <label htmlFor="hours">Hours</label> {/* 선점된 for은 사용 불가 -> jsx 문법 사용 */}
+                    <h1 className="hi">Super Converter</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input 
+                        value={minutes} // input 안의 값 minutes state로 얻음
+                        id="minutes"
+                        placeholder="Minutes"
+                        type="number"
+                        onChange={onChange} // 새로운 입력 시
+                    />
+                    <h4>You want to convert {minutes}</h4> {/* 새로운 입력마다 해당 값 표시 */}
+                    <label htmlFor="hours">Hours</label>
                     <input id="hours" placeholder="Hours" type="number" />
                 </div>
             );
