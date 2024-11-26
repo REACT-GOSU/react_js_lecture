@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function App() {
+        function MinutesToHours() { // 시&분 변환기
             const [amount, setAmount] = React.useState();
             const [flipped, setFlipped] = React.useState(false);
 
@@ -22,7 +22,6 @@
 
             return (
                 <div>
-                    <h1 className="hi">Super Converter</h1>
                     <div>
                         <label htmlFor="minutes">Minutes</label>
                         <input 
@@ -47,6 +46,29 @@
                     </div>
                     <button onClick={reset}>Reset</button>
                     <button onClick={onFlip}>{flipped ? "Turn back" : "Inverted"}</button>
+                </div>
+            );
+        }
+        function KmToMiles() { // km&m 변환기
+            return <h3>KM 2 M</h3>;
+        }
+        function App() { // 메인 앱
+            const [index, setIndex] = React.useState("-1") // 변환 모드 state
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            return (
+                <div>
+                    <h1 className="hi">Super Converter</h1>
+                    <select value={index} onChange={onSelect}> {/* 모드 선택 */}
+                        <option value="-1">Select Your Units</option>
+                        <option value="0">Minutes & Hours</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
+                    <hr />
+                    {index === "-1" ? "Please Select Your Units" : null} 
+                    {index === "0" ? <MinutesToHours /> : null}
+                    {index === "1" ? <KmToMiles /> : null}
                 </div>
             );
         }
