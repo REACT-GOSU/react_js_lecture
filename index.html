@@ -5,32 +5,36 @@
     </body>
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script> <!-- prop types checking -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function Btn({ text, changeValue }) {
+        function Btn({ text, fontSize = 14 }) { // undefined 시 기본값 설정 가능(댠, required가 아닐 때)
             return (
                 <button
-                    onClick={ changeValue }
                     style={{
                         backgroundColor: "tomato",
                         color: "white",
                         padding: "10px 20px",
                         border: 0,
                         borderRadius: 10,
+                        fontSize,
                     }}
                 >
                     {text}
                 </button>
             )
         }
-        const MemorizedBtn = React.memo(Btn); // props 변화가 있을 때에만 re-render
+        
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired, // 필수로 있는지 체크
+            fontSize: PropTypes.number,
+        }; // prop types 명시
+
         function App() {
-            const [value, setValue] = React.useState("Save Changes");
-            const changeValue = () => setValue("Revert Changes");
             return (
                 <div>
-                    <MemorizedBtn text={value} changeValue={changeValue} />
-                    <MemorizedBtn text="Contiue" />
+                    <Btn text="Save Changes" fontSize={18} />
+                    <Btn text="Contiue" fontSize={16} />
                 </div>
             );
         }
