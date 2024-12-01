@@ -7,68 +7,26 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function MinutesToHours() { // 시&분 변환기
-            const [amount, setAmount] = React.useState();
-            const [flipped, setFlipped] = React.useState(false);
-
-            const onChange = (event) => {
-                setAmount(event.target.value);
-            }
-            const reset = () => setAmount(0);
-            const onFlip = () => {
-                reset(); // 값이 flip할 때마다 그대로 옮겨가지 않도록 리셋
-                setFlipped((current) => !current); // setFlipped(!flipped);
-            }
-
+        function Btn(props) { // props 인자로 받음, 여러 개 가능
             return (
-                <div>
-                    <div>
-                        <label htmlFor="minutes">Minutes</label>
-                        <input 
-                            value={flipped ? amount * 60 : amount}
-                            id="minutes"
-                            placeholder="Minutes"
-                            type="number"
-                            onChange={onChange}
-                            disabled={flipped} // flipped === true
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="hours">Hours</label>
-                        <input
-                            value={flipped ? amount : Math.round(amount / 60)}
-                            id="hours"
-                            placeholder="Hours"
-                            type="number"
-                            onChange={onChange}
-                            disabled={!flipped} // flipped === false
-                        />
-                    </div>
-                    <button onClick={reset}>Reset</button>
-                    <button onClick={onFlip}>{flipped ? "Turn back" : "Inverted"}</button>
-                </div>
-            );
+                <button
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                    }}
+                >
+                    {props.banana} {/* props의 첫 번째 요소 사용 */}
+                </button>
+            )
         }
-        function KmToMiles() { // km&m 변환기
-            return <h3>KM 2 M</h3>;
-        }
-        function App() { // 메인 앱
-            const [index, setIndex] = React.useState("-1") // 변환 모드 state
-            const onSelect = (event) => {
-                setIndex(event.target.value);
-            }
-            return (
+        function App() { // 컴포넌트
+            return ( // JSX
                 <div>
-                    <h1 className="hi">Super Converter</h1>
-                    <select value={index} onChange={onSelect}> {/* 모드 선택 */}
-                        <option value="-1">Select Your Units</option>
-                        <option value="0">Minutes & Hours</option>
-                        <option value="1">Km & Miles</option>
-                    </select>
-                    <hr />
-                    {index === "-1" ? "Please Select Your Units" : null} 
-                    {index === "0" ? <MinutesToHours /> : null}
-                    {index === "1" ? <KmToMiles /> : null}
+                    <Btn banana="Save Changes" /> {/* props로 banana 요소에 text값 담아 보냄 */}
+                    <Btn banana="Contiue" />
                 </div>
             );
         }
