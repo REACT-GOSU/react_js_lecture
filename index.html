@@ -7,10 +7,10 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function Btn({ text, changeValue }) { // 이 곳에서 props를 가져와서 함수 내에 적용해야 실제로 작동
+        function Btn({ text, changeValue }) {
             return (
                 <button
-                    onClick={ changeValue } // 이렇게 적용해야 완성
+                    onClick={ changeValue }
                     style={{
                         backgroundColor: "tomato",
                         color: "white",
@@ -23,13 +23,14 @@
                 </button>
             )
         }
+        const MemorizedBtn = React.memo(Btn); // props 변화가 있을 때에만 re-render
         function App() {
             const [value, setValue] = React.useState("Save Changes");
             const changeValue = () => setValue("Revert Changes");
             return (
                 <div>
-                    <Btn text={value} changeValue={changeValue} /> {/* 변수, 함수, style 등 어느 형태이든 컴포넌트에 props로 전달은 가능하나 여기에 쓴다고 적용이 되지는 않음 */}
-                    <Btn text="Contiue" />
+                    <MemorizedBtn text={value} changeValue={changeValue} />
+                    <MemorizedBtn text="Contiue" />
                 </div>
             );
         }
