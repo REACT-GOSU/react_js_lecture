@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function Btn(props) { // props 인자로 받음, 여러 개 가능
+        function Btn({banana}) { // shortcut
             return (
                 <button
                     style={{
@@ -18,14 +18,14 @@
                         borderRadius: 10,
                     }}
                 >
-                    {props.banana} {/* props의 첫 번째 요소 사용 */}
+                    {banana} {/* 바로 사용 가능 */}
                 </button>
             )
         }
         function App() { // 컴포넌트
             return ( // JSX
                 <div>
-                    <Btn banana="Save Changes" /> {/* props로 banana 요소에 text값 담아 보냄 */}
+                    <Btn banana="Save Changes" />
                     <Btn banana="Contiue" />
                 </div>
             );
