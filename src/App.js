@@ -10,10 +10,11 @@ function App() {
   console.log("I run all the time.");
   useEffect(() => {
     console.log("CALL THE API....");
-  }, []); // 변화 기준점이 없어서 한 번만 실행
+  }, []);
   useEffect(() => {
+    if ( keyword !== "" && keyword.length > 5 ) // keyword가 5자 이상 입력됐을 때 조건 추가
     console.log("SEARCH FOR", keyword);
-  }, [keyword]); // 처음과, keyword가 변화할 때에만 해당 코드 실행, 여러 개도 가능
+  }, [keyword]);
 
   return (
     <div>
